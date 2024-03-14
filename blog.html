@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/images/fabicon.png">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/ba4a221170.js" crossorigin="anonymous"></script>
+    <title>Blog Page</title>
+    <style>
+        /* Additional styles for popup message container */
+        #popup-message {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 9999;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="flex justify-between items-center	mx-[60px] mt-[60px] mb-[34px] text-[18px] font-medium">
+            <div>
+                <button onclick="redirectToHomePage()"><img src="images/Logo.png" alt=""></button>
+            </div>
+            
+            <div>
+                <button onclick="redirectToHomePage()" class="btn text-[#fff] bg-[#FF1F3D]">Home Page</button>
+            </div>
+        </nav>
+        <div  class="mx-[60px] mb-[32px]">
+            <hr>
+        </div>
+        <div class="flex justify-center  ">
+            <div class="w-[280px] mt-2 h-[100px] sm:w-[500px] sm:h-[50px] sm:pt-0 bg-[#6196A6] pt-2 text-white text-[25px] font-bold rounded-sm">
+                <p class="text-center">WelCome To Our PH TUBE Blog Page</p>
+            </div>
+        </div>
+    </header>
+    <main>
+          
+        <div id="popup-message" class="shadow-lg">
+            No internet connection! Please check your connection. <i onclick="cross()" class="fa-solid fa-xmark"></i>
+        </div>
+
+    </main>
+
+    <script>
+        function redirectToHomePage() {
+            window.location.href = 'index.html';
+        }
+
+        let del = 0;
+        function cross(){
+            del = 1;
+            const popupMessage = document.getElementById('popup-message');
+            popupMessage.style.display = 'none';
+        }
+
+        function checkInternetConnection() {
+            if(!navigator.onLine && del === 0){
+                const popupMessage = document.getElementById('popup-message');
+                popupMessage.style.display = 'block';
+            }
+            else if(navigator.onLine){
+                const popupMessage = document.getElementById('popup-message');
+                popupMessage.style.display = 'none'; 
+                del = 0;
+            }
+        }
+
+        checkInternetConnection();
+
+        setInterval(checkInternetConnection, 2000);
+        
+
+    </script>
+</body>
+</html>
